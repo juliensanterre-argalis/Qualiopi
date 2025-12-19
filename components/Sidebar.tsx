@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import { BookOpen, Shield, Activity, FileCheck, Layers, Award, Settings, Home, Network, LayoutGrid, BarChart3, TrendingUp, Users, CalendarDays, Database, Cloud, CloudOff } from 'lucide-react';
-import { ViewState } from '../types.ts';
-import { INDICATORS, KEY_FIGURES } from '../constants.ts';
-import { storageService } from '../services/storageService.ts';
-import DatabaseConfig from './DatabaseConfig.tsx';
+import { ViewState } from '../types';
+import { INDICATORS } from '../constants';
+import { storageService } from '../services/storageService';
+import DatabaseConfig from './DatabaseConfig';
 
 interface SidebarProps {
   onNavigate: (view: ViewState) => void;

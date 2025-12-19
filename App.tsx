@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar.tsx';
-import IndicatorDetail from './components/IndicatorDetail.tsx';
-import StaticPages from './components/StaticPages.tsx';
-import { ViewState } from './types.ts';
-import { INDICATORS } from './constants.ts';
-import { storageService } from './services/storageService.ts';
+import Sidebar from './components/Sidebar';
+import IndicatorDetail from './components/IndicatorDetail';
+import StaticPages from './components/StaticPages';
+import { ViewState } from './types';
+import { INDICATORS } from './constants';
+import { storageService } from './services/storageService';
 import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
