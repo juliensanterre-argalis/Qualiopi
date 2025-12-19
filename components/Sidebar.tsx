@@ -1,10 +1,10 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import { BookOpen, Shield, Activity, FileCheck, Layers, Award, Settings, Home, Network, LayoutGrid, BarChart3, TrendingUp, Users, CalendarDays, Database, Cloud, CloudOff } from 'lucide-react';
-import { ViewState } from '../types';
-import { INDICATORS, KEY_FIGURES } from '../constants';
-import { storageService } from '../services/storageService';
-import DatabaseConfig from './DatabaseConfig';
+import { ViewState } from '../types.ts';
+import { INDICATORS, KEY_FIGURES } from '../constants.ts';
+import { storageService } from '../services/storageService.ts';
+import DatabaseConfig from './DatabaseConfig.tsx';
 
 interface SidebarProps {
   onNavigate: (view: ViewState) => void;
@@ -86,12 +86,10 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate, currentView }) => {
         <button 
           onClick={() => setShowDbConfig(true)}
           className="absolute top-4 right-4 text-white/20 hover:text-argalis-accent transition-colors"
-          title="Configurer la base de données"
         >
           <Database size={16} />
         </button>
-        
-        <div className="bg-white rounded-2xl p-4 inline-block shadow-lg mb-4 transform hover:scale-105 transition-transform duration-300">
+        <div className="bg-white rounded-2xl p-4 inline-block shadow-lg mb-4">
            <img src="https://github.com/danyvarlet/argalis_assets/blob/d5f767e8967b95605861ecf236c9405cf6b0041e/Argalis%20carre.svg?raw=true" className="h-10 w-auto" alt="Logo Argalis"/>
         </div>
         <div className="flex items-center justify-center gap-2 mb-1">
@@ -99,7 +97,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate, currentView }) => {
           {isCloudConnected ? <Cloud size={10} className="text-emerald-400" /> : <CloudOff size={10} className="text-white/20" />}
         </div>
       </div>
-
       <nav className="flex-1 p-6 space-y-8">
         <ul className="space-y-1.5">
           {menuItems.map((item) => (
@@ -112,22 +109,17 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate, currentView }) => {
                     : 'text-argalis-accent hover:bg-white/5 hover:text-white'
                 }`}
               >
-                <span className={`${currentView.type === 'static' && currentView.page === item.id ? 'text-argalis' : 'text-argalis-accent group-hover:text-white'}`}>
-                  {item.icon}
-                </span>
+                {item.icon}
                 <span className="font-head tracking-tight">{item.label}</span>
               </button>
             </li>
           ))}
         </ul>
-
-        {/* Mini-Dashboard Widget */}
         <div className="bg-argalis-dark/40 rounded-2xl p-5 border border-white/5 shadow-inner">
            <div className="flex items-center gap-2 mb-4">
              <TrendingUp size={14} className="text-emerald-400" />
              <h3 className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Performance 2025</h3>
            </div>
-           
            <div className="flex items-center gap-4 mb-6">
               <div className="relative w-14 h-14 shrink-0">
                 <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
@@ -141,27 +133,8 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate, currentView }) => {
                 <p className="text-xs font-black text-white leading-tight">Objectif 100%</p>
               </div>
            </div>
-
-           <div className="grid grid-cols-2 gap-2">
-              <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                 <CalendarDays size={12} className="text-argalis-accent mb-1 opacity-40" />
-                 <p className="text-[10px] font-black text-white leading-none">{KEY_FIGURES.sessions}</p>
-                 <p className="text-[7px] font-bold text-argalis-accent/40 uppercase mt-1">Sessions</p>
-              </div>
-              <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                 <Users size={12} className="text-argalis-accent mb-1 opacity-40" />
-                 <p className="text-[10px] font-black text-white leading-none">{KEY_FIGURES.learners}</p>
-                 <p className="text-[7px] font-bold text-argalis-accent/40 uppercase mt-1">Apprenants</p>
-              </div>
-           </div>
         </div>
-
         <div>
-           <div className="flex items-center gap-3 px-2 mb-6 text-argalis-accent/40">
-             <div className="h-px bg-white/10 flex-1"></div>
-             <h3 className="text-[9px] font-black uppercase tracking-[0.25em]">Référentiel</h3>
-             <div className="h-px bg-white/10 flex-1"></div>
-           </div>
            <ul className="space-y-8">
              {indicatorGroups.map((group, idx) => (
                <li key={idx}>
@@ -194,7 +167,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate, currentView }) => {
            </ul>
         </div>
       </nav>
-
       {showDbConfig && <DatabaseConfig onClose={() => setShowDbConfig(false)} />}
     </aside>
   );

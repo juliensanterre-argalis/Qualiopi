@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import IndicatorDetail from './components/IndicatorDetail';
-import StaticPages from './components/StaticPages';
-import { ViewState } from './types';
-import { INDICATORS } from './constants';
-import { storageService } from './services/storageService';
+import Sidebar from './components/Sidebar.tsx';
+import IndicatorDetail from './components/IndicatorDetail.tsx';
+import StaticPages from './components/StaticPages.tsx';
+import { ViewState } from './types.ts';
+import { INDICATORS } from './constants.ts';
+import { storageService } from './services/storageService.ts';
 import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -14,7 +14,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const initApp = async () => {
-      // Tentative de synchronisation Cloud au démarrage
       if (storageService.getApiUri()) {
         await storageService.fetchAll();
       }
@@ -53,7 +52,7 @@ const App: React.FC = () => {
 
     if (currentView.type === 'indicator') {
       const data = INDICATORS.find(i => i.id === currentView.id);
-      if (!data) return <div>Indicateur non trouvé</div>;
+      if (!data) return <div className="p-20 text-center font-head font-bold text-argalis">Indicateur non trouvé</div>;
       
       return (
         <IndicatorDetail 
